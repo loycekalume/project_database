@@ -1,0 +1,71 @@
+{% extends 'master.html' %}
+{% load static %}
+{% block title %}
+    <title> Customer Details</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <table class="table table-striped">
+                    <tr>
+                        <td>First Name</td>
+                        <td>{{ customer.first_name }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Last Name</td>
+                        <td>{{ customer.last_name }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Email</td>
+                        <td>{{ customer.first_name }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Date of birth</td>
+                        <td>{{ customer.dob|date:"d-m-y" }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Gender</td>
+                        <td>{{ customer.gender }}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Weight</td>
+                        <td>{{ customer.weight }}</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>Total Deposit</td>
+                        <td>{{ total}}</td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-sm-4 mt-3">
+                <img src="{% static 'profile.png' %}" alt="">
+            </div>
+
+            <div class="col-sm-4">
+                <table class=" table table-bordered">
+                    <tr>
+                        <td>Date</td>
+                        <td>Amount</td>
+                        <td>Status</td>
+                    </tr>
+                    {% for depo in deposits %}
+                      <tr>
+                        <td>{{ depo.created_at|date:"d-m-y" }}</td>
+                        <td>{{ depo.amount }}</td>
+                        <td>{{ depo.status }}</td>
+                      </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
