@@ -56,7 +56,7 @@ def delete_customer(request, customer_id):
 @permission_required("sacco.add_customer", raise_exception=True)
 def add_customers(request):
     if request.method == "POST":
-        form = CustomerForm(request.POST)
+        form = CustomerForm(request.POST,request.FILES)
         if form.is_valid():
             form.save()
             messages.success(request, f"Customer {form.cleaned_data['first_name']} was added!")
@@ -73,7 +73,7 @@ def add_customers(request):
 def update_customer(request, customer_id):
     customer = get_object_or_404(Customer, id=customer_id)
     if request.method == "POST":
-        form = CustomerForm(request.POST,instance=customer)
+        form = CustomerForm(request.POST,request.FILES,instance=customer)
         if form.is_valid():
             form.save()
             messages.success(request, f"Customer {form.cleaned_data['first_name']} was updated!")
